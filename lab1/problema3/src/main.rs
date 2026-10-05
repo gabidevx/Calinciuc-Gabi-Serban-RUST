@@ -11,13 +11,13 @@ fn main() {
             println!("1 bottle of beer.");
             println!("Take one down, pass it around,");
             println!("No bottles of beer on the wall.");
-        } else if i == 0{
+        } else if i == 0 {
             println!("No bottles of beer on the wall,");
             println!("No bottles of beer.");
             println!("Go to the store, buy some more,");
             println!("99 bottles of beer on the wall.");
         }
-        println!("");
+        println!();
         i -= 1;
     }
 }

@@ -12,7 +12,7 @@ fn prime(num: i32) -> bool {
             i += 1;
         }
     }
-    return true;
+    true
 }
 
 fn main() {
