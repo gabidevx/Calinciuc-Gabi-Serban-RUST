@@ -22,11 +22,10 @@ fn first_word(s: &str) -> &str {
     let mut string_end = 0;
 
     let bytes = s.as_bytes();
-    let len = s.len();
-    while bytes[string_end] != 32 && string_end < len - 1 {
+    while string_end < bytes.len() && bytes[string_end] != b' ' {
         string_end += 1;
     }
-    &s[0..string_end+1]
+    &s[0..string_end]
 }
 
 // A new String with the characters of `s` in reverse order.
@@ -40,7 +39,7 @@ fn reverse(s: &str) -> String {
 
 // True if `s` reads the same backwards. Reuse reverse().
 fn is_palindrome(s: &str) -> bool {
-    if s == reverse(&s) {
+    if s == reverse(s) {
         return true;
     }
     false
@@ -101,11 +100,10 @@ fn longer_of(a: String, b: String) -> String {
 
 // Build a Note from two string slices. The Note must own its text.
 fn make_note(title: &str, body: &str) -> Note {
-    let new_note = Note {
+    Note {
         title: title.to_string(),
         body: body.to_string(),
-    };
-    new_note
+    }
 }
 
 // Number of words in the body, counted by hand with chars().
@@ -115,7 +113,7 @@ fn word_count(note: &Note) -> usize {
     let mut cuvant: bool = false;
     for c in body.chars() {
         if c != ' ' {
-            if cuvant == false {
+            if !cuvant {
                 count += 1;
                 cuvant = true;
             } else {
@@ -159,7 +157,7 @@ fn merge(a: Note, b: &Note) -> Note {
 
     note.title.push('+');
     note.title.push_str(&b.title);
-    note.body.push_str(" ");
+    note.body.push(' ');
     note.body.push_str(&b.body);
     note
 }
